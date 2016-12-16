@@ -1,7 +1,5 @@
 package com.bucuoa.utils;
 
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,8 +91,8 @@ public class WestZookeeperClient {
 	public String write(String path, String content) throws Exception {
 		String writePath = "";
 		try {
-			writePath = curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT)
-					.forPath(path, content.getBytes("utf-8"));
+			writePath = curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path,
+					content.getBytes("utf-8"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,7 +103,7 @@ public class WestZookeeperClient {
 		String value = "";
 		try {
 			byte[] forPath = curator.getData().forPath(path);
-			
+
 			value = new String(forPath, "utf-8");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -289,6 +287,6 @@ public class WestZookeeperClient {
 	private final Set<ZkStateListener> stateListeners = new CopyOnWriteArraySet<ZkStateListener>();
 
 	public void addStateListener(ZkStateListener listener) {
-        stateListeners.add(listener);  
-    }
+		stateListeners.add(listener);
+	}
 }
